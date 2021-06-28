@@ -16,7 +16,14 @@ class handDetector():
 
         self.mpDraw = mp.solutions.drawing_utils
 
+
     def findHands(self, img, draw = True):
+        """
+        Returns a image and finds the location of the hand
+
+        img: the img object
+        boolean draw: determines whether to draw on screen or not
+        """
         # Takes in the RGB image
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         # Want to extract information from the results
@@ -32,16 +39,19 @@ class handDetector():
         return img
 
 
-def findPosition(self, img, handNo = 0, draw= True):
-    lmList = []
-    if self.results.multi_hand_landmarks:
-        myHand = self.results.multi_hand_landmarks[handNo]
-        for id, lm in enumerate(myHand.landmark):
-            h, w, c = img.shape
-            cx, cy = int(lm.x*w), int(lm.y*h)
-            lmList.append(id, cx, cy)
-            # use draw for a condition to draw something
-    return lmList
+    def findPosition(self, img, handNo = 0, draw= True):
+        """
+        Returns a list of the exact pixel location of landmarks
+        """
+        lmList = []
+        if self.results.multi_hand_landmarks:
+            myHand = self.results.multi_hand_landmarks[handNo]
+            for id, lm in enumerate(myHand.landmark):
+                h, w, c = img.shape
+                cx, cy = int(lm.x*w), int(lm.y*h)
+                lmList.append([id, cx, cy])
+                # use draw for a condition to draw something
+        return lmList
 
 def main():
     pTime = 0

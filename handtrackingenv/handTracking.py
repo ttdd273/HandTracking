@@ -3,7 +3,7 @@ import mediapipe as mp
 import time
 
 # The number indicates which webcam you're using
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 # Landmarking the hand
 mpHands = mp.solutions.hands
